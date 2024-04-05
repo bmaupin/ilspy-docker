@@ -1,5 +1,7 @@
 FROM ubuntu:20.04
 
+LABEL org.opencontainers.image.source=https://github.com/bmaupin/ilspy-docker
+
 # Install wget
 RUN apt update && \
     apt -y install wget
