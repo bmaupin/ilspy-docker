@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:24.04
 
 LABEL org.opencontainers.image.source=https://github.com/bmaupin/ilspy-docker
 
@@ -7,14 +7,14 @@ RUN apt update && \
     apt -y install wget
 
 # Install Microsoft package signing key
-RUN wget https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
+RUN wget https://packages.microsoft.com/config/ubuntu/24.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
     dpkg -i packages-microsoft-prod.deb && \
     rm packages-microsoft-prod.deb
 
 # Install .NET SDK (required to use `dotnet tool`, includes the runtime)
 RUN apt install -y apt-transport-https && \
     apt update && \
-    apt install -y dotnet-sdk-6.0
+    apt install -y dotnet-sdk-10.0
 
 # Use a directory accessible by non-root users so they can run ILSpy
 ENV DOTNET_CLI_HOME=/opt/dotnet/
